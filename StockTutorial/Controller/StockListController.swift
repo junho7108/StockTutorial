@@ -23,6 +23,8 @@ class StockListController: BaseViewController, FactoryModule {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        
+        viewModel.fetchStocks()
     }
     
     override func configureUI() {
@@ -37,6 +39,11 @@ class StockListController: BaseViewController, FactoryModule {
     }
     
     func bind() {
+        
+        viewModel.loading.subscribe(onNext: { isLoading in
+            print("loading: \(isLoading)")
+        }).disposed(by: disposeBag)
+        
         viewModel.errorMessage.subscribe(onNext: { error in
             guard let error = error else { return }
             print("error: \(error)")
@@ -44,7 +51,7 @@ class StockListController: BaseViewController, FactoryModule {
         
         viewModel.stocks
             .subscribe(onNext: { stocks in
-                print(stocks)
+                print("stocks: \(stocks)")
             }).disposed(by: disposeBag)
     }
 }

@@ -85,9 +85,10 @@
 			children = (
 				122BBD8927A963B10026671B /* Domain */,
 				122BBD9027A963F60026671B /* Repository */,
-				122BBD8F27A963F00026671B /* Model */,
 				122BBD8E27A963E70026671B /* Component */,
+				122BBD8F27A963F00026671B /* Model */,
 				122BBD8D27A963E00026671B /* View */,
+				1277EC4527B018C00077BD95 /* ViewModel */,
 				122BBD8A27A963B60026671B /* Controller */,
 				122BBD8C27A963D60026671B /* Coordinator */,
 				122BBD8B27A963BF0026671B /* DI */,
@@ -113,7 +114,6 @@
 			children = (
 				122BBD9127A9640D0026671B /* BaseViewController.swift */,
 				12C40B2127A965660005C020 /* StockListController.swift */,
-				1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -166,6 +166,14 @@
 				120B68A927AEA1C600F7FAC9 /* StockRepositoryImpl.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		1277EC4527B018C00077BD95 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		52C45F7CB53A2AF9DCE675E6 /* Pods */ = {
