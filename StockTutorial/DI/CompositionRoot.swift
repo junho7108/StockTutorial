@@ -4,7 +4,16 @@ struct AppDependency {
 
 extension AppDependency {
     static func resolve() -> AppDependency {
-        let mainCoordinator: MainCoordinator = .init()
+        
+        let stockRepositry: StockRepository = StockRepositoryImpl()
+        
+        let stockListControllerFactory: () -> StockListController = {
+            let usecase = StockUseCase(stockRepository: stockRepositry)
+            let viewModel = StockListViewModel(usecase: usecase)
+            return .init(dependency: .init(viewModel: viewModel))
+        }
+        
+        let mainCoordinator: MainCoordinator = .init(dependency: .init(stockListControllerFactory: stockListControllerFactory))
         return .init(mainCoordinator: mainCoordinator)
     }
 }

@@ -3,12 +3,10 @@ import RxSwift
 import Alamofire
 
 class StockRepositoryImpl: StockRepository {
-    
-   
     let apiKey: String = "IZEI2Y7NR30L387V"
     let decoder = JSONDecoder()
     
-    func fetchStockPublisherRx(keywords: String) -> Observable<StockResult> {
+    func fetchStockPublisher(keywords: String) -> Observable<StockResult> {
         return Observable.create { observable -> Disposable in
             
             self.fetchStockPublisher(keywords: keywords) { result in
@@ -25,8 +23,10 @@ class StockRepositoryImpl: StockRepository {
             return Disposables.create()
         }
     }
-    
-    func fetchStockPublisher(keywords: String, completion: @escaping ((Result<StockResult, Error>) -> Void)) {
+}
+
+extension StockRepositoryImpl {
+    private func fetchStockPublisher(keywords: String, completion: @escaping ((Result<StockResult, Error>) -> Void)) {
         let urlString = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=\(keywords)&apikey=\(apiKey)"
         
         let url = URL(string: urlString)!

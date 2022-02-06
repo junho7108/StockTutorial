@@ -20,6 +20,8 @@
 		122BBD9227A9640D0026671B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BBD9127A9640D0026671B /* BaseViewController.swift */; };
 		122BBD9427A9647F0026671B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BBD9327A9647F0026671B /* BaseView.swift */; };
 		122BBD9627A964C30026671B /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BBD9527A964C30026671B /* StockListView.swift */; };
+		1277EC4227AFFEC20077BD95 /* StockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277EC4127AFFEC20077BD95 /* StockUseCase.swift */; };
+		1277EC4427AFFFCC0077BD95 /* StockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */; };
 		12C40B2227A965660005C020 /* StockListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C40B2127A965660005C020 /* StockListController.swift */; };
 		71832F9344FD1E84B44769DF /* Pods_StockTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4188159B0EDB24C746AEDBF2 /* Pods_StockTutorial.framework */; };
 /* End PBXBuildFile section */
@@ -40,6 +42,8 @@
 		122BBD9127A9640D0026671B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		122BBD9327A9647F0026671B /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		122BBD9527A964C30026671B /* StockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListView.swift; sourceTree = "<group>"; };
+		1277EC4127AFFEC20077BD95 /* StockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCase.swift; sourceTree = "<group>"; };
+		1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModel.swift; sourceTree = "<group>"; };
 		12C40B2127A965660005C020 /* StockListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListController.swift; sourceTree = "<group>"; };
 		4188159B0EDB24C746AEDBF2 /* Pods_StockTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C64AEA6086BDC798DD3783 /* Pods-StockTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockTutorial.debug.xcconfig"; path = "Target Support Files/Pods-StockTutorial/Pods-StockTutorial.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 		122BBD8927A963B10026671B /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				1277EC4127AFFEC20077BD95 /* StockUseCase.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			children = (
 				122BBD9127A9640D0026671B /* BaseViewController.swift */,
 				12C40B2127A965660005C020 /* StockListController.swift */,
+				1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				120B68A427AE988000F7FAC9 /* CompositionRoot.swift in Sources */,
+				1277EC4427AFFFCC0077BD95 /* StockListViewModel.swift in Sources */,
 				12C40B2227A965660005C020 /* StockListController.swift in Sources */,
 				120B68AC27AEA28600F7FAC9 /* Stock.swift in Sources */,
 				122BBD7627A963840026671B /* AppDelegate.swift in Sources */,
@@ -304,6 +311,7 @@
 				122BBD9427A9647F0026671B /* BaseView.swift in Sources */,
 				122BBD9627A964C30026671B /* StockListView.swift in Sources */,
 				120B68A227AE983700F7FAC9 /* Coordinator.swift in Sources */,
+				1277EC4227AFFEC20077BD95 /* StockUseCase.swift in Sources */,
 				120B68AA27AEA1C600F7FAC9 /* StockRepositoryImpl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
