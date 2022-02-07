@@ -13,15 +13,13 @@ class StockListViewModel {
         self.usecase = usecase
     }
     
-    func fetchStocks() {
-        loading.onNext(true)
-        
-        usecase.fetchStocksPublisher(keywords: "AMZ")
-            .subscribe(onNext: { stockResult in
+    func searchQueryChanged(query: String) {
+        usecase.fetchStocksPublisher(keywords: query)
+            .subscribe { [unowned self] stockResult in
                 self.stocks.onNext(stockResult.items)
-                self.loading.onNext(false)
-            }).disposed(by: disposeBag)
-            
-       
+            } onError: { [unowned self] error in
+                self.errorMessage.onNext(error.localizedDescription)
+            }.disposed(by: disposeBag)
+
     }
 }

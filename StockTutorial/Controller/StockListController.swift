@@ -1,11 +1,12 @@
 import UIKit
 import Pure
+import RxSwift
+import RxCocoa
 
 class StockListController: BaseViewController, FactoryModule {
     
     struct Dependency {
         let viewModel: StockListViewModel
-        
     }
     
     let selfView = StockListView()
@@ -23,8 +24,6 @@ class StockListController: BaseViewController, FactoryModule {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-        
-        viewModel.fetchStocks()
     }
     
     override func configureUI() {
@@ -40,19 +39,31 @@ class StockListController: BaseViewController, FactoryModule {
     
     func bind() {
         
-        viewModel.loading.subscribe(onNext: { isLoading in
-            print("loading: \(isLoading)")
-        }).disposed(by: disposeBag)
+        selfView.searchController.searchBar.rx.text.orEmpty
+            .debounce(.microseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] text in
+                self.viewModel.searchQueryChanged(query: text)
+            })
+            .disposed(by: disposeBag)
         
-        viewModel.errorMessage.subscribe(onNext: { error in
-            guard let error = error else { return }
-            print("error: \(error)")
-        }).disposed(by: disposeBag)
+        viewModel.loading
+            .subscribe(onNext: { isLoading in
+                print("loading: \(isLoading)")
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.errorMessage
+            .subscribe(onNext: { error in
+                guard let error = error else { return }
+                print("error: \(error)")
+            })
+            .disposed(by: disposeBag)
         
         viewModel.stocks
             .subscribe(onNext: { stocks in
                 print("stocks: \(stocks)")
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
