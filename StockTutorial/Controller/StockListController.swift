@@ -46,11 +46,13 @@ class StockListController: BaseViewController, FactoryModule {
             })
             .disposed(by: disposeBag)
         
+        
         viewModel.loading
             .subscribe(onNext: { [unowned self] isLoading in
                 self.selfView.loadingView.isHidden = !isLoading
             })
             .disposed(by: disposeBag)
+        
         
         viewModel.errorMessage
             .subscribe(onNext: { error in
@@ -59,11 +61,19 @@ class StockListController: BaseViewController, FactoryModule {
             })
             .disposed(by: disposeBag)
         
+        
         viewModel.stocks
             .subscribe(onNext: { stocks in
                 print("stocks: \(stocks)")
             })
             .disposed(by: disposeBag)
+        
+        
+        viewModel.stocks
+            .bind(to: selfView.tableView.rx.items(cellIdentifier: StockCell.identifier, cellType: StockCell.self)) { index, stock, cell in
+            cell.configureUI(item: stock)
+        }
+        .disposed(by: disposeBag)
     }
 }
 

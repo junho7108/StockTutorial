@@ -1,5 +1,7 @@
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 class StockListView: BaseView {
     
@@ -20,6 +22,8 @@ class StockListView: BaseView {
     
     override func configureUI() {
         addSubview(tableView)
+        tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.identifier)
+        
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
