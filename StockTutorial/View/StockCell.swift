@@ -8,8 +8,18 @@ class StockCell: UITableViewCell {
     let descriptionLabel = NormalGrayLabel()
     let companyNameLabel = NormalLabel()
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) { 
+        if highlighted {
+            alpha = 0.6
+        } else {
+            alpha = 1
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         
         contentView.addSubview(symbolLabel)
         symbolLabel.snp.makeConstraints { make in

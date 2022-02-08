@@ -23,6 +23,7 @@ class StockListView: BaseView {
     override func configureUI() {
         addSubview(tableView)
         tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.identifier)
+        tableView.separatorStyle = .none
         
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
