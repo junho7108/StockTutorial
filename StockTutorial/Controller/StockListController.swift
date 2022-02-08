@@ -47,8 +47,8 @@ class StockListController: BaseViewController, FactoryModule {
             .disposed(by: disposeBag)
         
         viewModel.loading
-            .subscribe(onNext: { isLoading in
-                print("loading: \(isLoading)")
+            .subscribe(onNext: { [unowned self] isLoading in
+                self.selfView.loadingView.isHidden = !isLoading
             })
             .disposed(by: disposeBag)
         

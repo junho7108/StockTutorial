@@ -2,6 +2,9 @@ import UIKit
 import SnapKit
 
 class StockListView: BaseView {
+    
+    let loadingView = LoadingView()
+    
     let tableView: UITableView = {
         let view = UITableView()
         view.backgroundColor = .systemBackground
@@ -18,6 +21,11 @@ class StockListView: BaseView {
     override func configureUI() {
         addSubview(tableView)
         tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
