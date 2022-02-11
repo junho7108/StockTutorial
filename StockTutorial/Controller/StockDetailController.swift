@@ -8,6 +8,7 @@ class StockDetailController: BaseViewController, FactoryModule {
     }
     
     let stock: Stock
+    let selfView = StockDetailView()
     
     //MARK: - Lifecycle
     
@@ -25,5 +26,10 @@ class StockDetailController: BaseViewController, FactoryModule {
     override func configureUI() {
         view.backgroundColor = .systemBackground
         title = "Detail"
+        
+        view.addSubview(selfView)
+        selfView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

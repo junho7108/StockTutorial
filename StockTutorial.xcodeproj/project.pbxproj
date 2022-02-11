@@ -28,6 +28,7 @@
 		12C40B2227A965660005C020 /* StockListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C40B2127A965660005C020 /* StockListController.swift */; };
 		12CEE6B627B65AD100C18A6B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CEE6B527B65AD100C18A6B /* EmptyView.swift */; };
 		12CEE6B827B685AC00C18A6B /* StockDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CEE6B727B685AC00C18A6B /* StockDetailController.swift */; };
+		12CEE6BA27B68DC700C18A6B /* StockDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CEE6B927B68DC700C18A6B /* StockDetailView.swift */; };
 		71832F9344FD1E84B44769DF /* Pods_StockTutorial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4188159B0EDB24C746AEDBF2 /* Pods_StockTutorial.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		12C40B2127A965660005C020 /* StockListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListController.swift; sourceTree = "<group>"; };
 		12CEE6B527B65AD100C18A6B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		12CEE6B727B685AC00C18A6B /* StockDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailController.swift; sourceTree = "<group>"; };
+		12CEE6B927B68DC700C18A6B /* StockDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailView.swift; sourceTree = "<group>"; };
 		4188159B0EDB24C746AEDBF2 /* Pods_StockTutorial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockTutorial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C64AEA6086BDC798DD3783 /* Pods-StockTutorial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockTutorial.debug.xcconfig"; path = "Target Support Files/Pods-StockTutorial/Pods-StockTutorial.debug.xcconfig"; sourceTree = "<group>"; };
 		C4AD73495F8A498E65977449 /* Pods-StockTutorial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockTutorial.release.xcconfig"; path = "Target Support Files/Pods-StockTutorial/Pods-StockTutorial.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				122BBD9527A964C30026671B /* StockListView.swift */,
 				1227EF2927B2A2CC00366DF9 /* StockCell.swift */,
 				12CEE6B527B65AD100C18A6B /* EmptyView.swift */,
+				12CEE6B927B68DC700C18A6B /* StockDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				120B68AC27AEA28600F7FAC9 /* Stock.swift in Sources */,
 				1227EF2A27B2A2CC00366DF9 /* StockCell.swift in Sources */,
 				122BBD7627A963840026671B /* AppDelegate.swift in Sources */,
+				12CEE6BA27B68DC700C18A6B /* StockDetailView.swift in Sources */,
 				122BBD7827A963840026671B /* SceneDelegate.swift in Sources */,
 				120B68A827AEA19400F7FAC9 /* StockRepository.swift in Sources */,
 				120B68A627AE9A8A00F7FAC9 /* MainCoordinator.swift in Sources */,
