@@ -29,7 +29,9 @@ extension StockRepositoryImpl {
     private func fetchStockPublisher(keywords: String, completion: @escaping ((Result<StockResult, Error>) -> Void)) {
         let urlString = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=\(keywords)&apikey=\(apiKey)"
         
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else {
+            return completion(.failure(URLError.init(.badURL)))
+        }
         
         AF.request(url, method: .get,
                    parameters: nil,

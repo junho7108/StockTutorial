@@ -45,58 +45,42 @@ class StockListController: BaseViewController, FactoryModule {
         }
         
         navigationItem.searchController = selfView.searchController
-        selfView.searchController.delegate = self
-        selfView.searchController.searchResultsUpdater = self
     }
     
     func bind() {
         
-        selfView.searchController.searchBar.rx.text.orEmpty
-            .debounce(.microseconds(300), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] text in
-                self.viewModel.searchQueryChanged(query: text)
-            })
-            .disposed(by: disposeBag)
-        
-        
+        // Bind UI
         viewModel.loading
-            .subscribe(onNext: { [unowned self] isLoading in
-                self.selfView.loadingView.isHidden = !isLoading
-            })
+            .map { !$0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(selfView.loadingView.rx.isHidden)
             .disposed(by: disposeBag)
-        
         
         viewModel.isEmptyObservable
-            .bind(to: selfView.emptyView.rx.isHidden)
+            .asDriver(onErrorJustReturn: true)
+            .drive(selfView.emptyView.rx.isHidden)
             .disposed(by: disposeBag)
         
+        viewModel.stocks
+            .asDriver(onErrorJustReturn: [])
+            .drive(selfView.tableView.rx.items(cellIdentifier: StockCell.identifier, cellType: StockCell.self)) { index, stock, cell in
+                cell.configureUI(item: stock)
+            }
+        .disposed(by: disposeBag)
         
+        // Bind Data
+        selfView.searchController.searchBar.rx.text
+            .debounce(.microseconds(300), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] text in
+                self.viewModel.searchQueryChanged(query: text ?? "")
+            })
+            .disposed(by: disposeBag)
+    
         viewModel.errorMessage
             .subscribe(onNext: { error in
                 guard let error = error else { return }
                 print("error: \(error)")
             })
             .disposed(by: disposeBag)
-        
-        
-        viewModel.stocks
-            .bind(to: selfView.tableView.rx.items(cellIdentifier: StockCell.identifier, cellType: StockCell.self)) { index, stock, cell in
-            cell.configureUI(item: stock)
-        }
-        .disposed(by: disposeBag)
-    }
-}
-
-//MARK: - UISearchControllerDelegate
-
-extension StockListController: UISearchControllerDelegate {
-    
-}
-
-//MARK: - UISearchResultsUpdating
-
-extension StockListController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        
     }
 }

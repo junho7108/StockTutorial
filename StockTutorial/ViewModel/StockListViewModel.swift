@@ -16,6 +16,7 @@ class StockListViewModel {
     
     init(usecase: StockUseCase) {
         self.usecase = usecase
+        reduce()
     }
     
     func searchQueryChanged(query: String) {
@@ -23,13 +24,19 @@ class StockListViewModel {
         
         usecase.fetchStocksPublisher(keywords: query)
             .subscribe { [unowned self] stockResult in
-                stockResult.items.count > 0 ? isEmpty.onNext(true) : isEmpty.onNext(false)
                 self.loading.onNext(false)
                 self.stocks.onNext(stockResult.items)
             } onError: { [unowned self] error in
                 self.loading.onNext(false)
+                self.stocks.onNext([])
                 self.errorMessage.onNext(error.localizedDescription)
             }.disposed(by: disposeBag)
-
+    }
+    
+    private func reduce() {
+        stocks.subscribe(onNext: { [unowned self] stocks in
+            self.isEmpty.onNext(!stocks.isEmpty)
+        })
+        .disposed(by: disposeBag)
     }
 }
