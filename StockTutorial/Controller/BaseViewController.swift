@@ -5,7 +5,10 @@ import RxCocoa
 class BaseViewController: UIViewController {
     
     let disposeBag = DisposeBag()
+    
     private var scrollView: UIScrollView?
+    
+    //MARK: - Lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -20,9 +23,13 @@ class BaseViewController: UIViewController {
         configureUI()
     }
     
+    //MARK: - Configure
+    
     func configureUI() {
         view.backgroundColor = .systemBackground
     }
+    
+    //MARK: - Helpers
     
     func enableScrollWhenKeyboardAppeared(scrollView: UIScrollView) {
         self.scrollView = scrollView
@@ -40,6 +47,8 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    //MARK: - Selectors
+    
     @objc private func keyboardWillShow(notification: Notification) {
         guard let scrollView = scrollView else { return }
         guard let userInfo = notification.userInfo else { return }
@@ -53,7 +62,7 @@ class BaseViewController: UIViewController {
     
     @objc private func keyboardWillHide(notification: Notification) {
         guard let scrollView = scrollView else { return }
-        var contentInset = UIEdgeInsets.zero
+        let contentInset = UIEdgeInsets.zero
         scrollView.contentInset = contentInset
     }
 }

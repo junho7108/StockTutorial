@@ -10,7 +10,12 @@ class StockListController: BaseViewController, FactoryModule {
     }
     
     let selfView = StockListView()
+    
     let viewModel: StockListViewModel
+    
+    var coordinator: MainCoordinator?
+    
+    //MARK: - Lifecycle
     
     required init(dependency: Dependency, payload: ()) {
         viewModel = dependency.viewModel
@@ -38,6 +43,7 @@ class StockListController: BaseViewController, FactoryModule {
         removeListeners()
     }
     
+    //MARK: - Configure
     override func configureUI() {
         view.addSubview(selfView)
         selfView.snp.makeConstraints { make in
@@ -46,6 +52,8 @@ class StockListController: BaseViewController, FactoryModule {
         
         navigationItem.searchController = selfView.searchController
     }
+    
+    //MARK: - Bind
     
     func bind() {
         
@@ -82,5 +90,12 @@ class StockListController: BaseViewController, FactoryModule {
                 print("error: \(error)")
             })
             .disposed(by: disposeBag)
+        
+        selfView.tableView.rx.modelSelected(Stock.self)
+            .subscribe(onNext: { [unowned self] stock in
+                self.coordinator?.stockCellTapped(item: stock)
+            })
+            .disposed(by: disposeBag)
+    
     }
 }
