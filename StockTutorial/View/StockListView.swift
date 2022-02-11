@@ -20,6 +20,8 @@ class StockListView: BaseView {
         return view
     }()
     
+    let emptyView = EmptyView()
+    
     override func configureUI() {
         addSubview(tableView)
         tableView.register(StockCell.self, forCellReuseIdentifier: StockCell.identifier)
@@ -29,9 +31,16 @@ class StockListView: BaseView {
             make.edges.equalToSuperview()
         }
         
+        addSubview(emptyView)
+        emptyView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         addSubview(loadingView)
         loadingView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+       
     }
 }

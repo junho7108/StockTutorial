@@ -10,4 +10,5 @@ target 'StockTutorial' do
   pod 'RxCocoa'
   pod 'Alamofire', '~> 5.5'
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Pure'
 end

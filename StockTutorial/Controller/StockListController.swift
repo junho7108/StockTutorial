@@ -66,17 +66,15 @@ class StockListController: BaseViewController, FactoryModule {
             .disposed(by: disposeBag)
         
         
+        viewModel.isEmptyObservable
+            .bind(to: selfView.emptyView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        
         viewModel.errorMessage
             .subscribe(onNext: { error in
                 guard let error = error else { return }
                 print("error: \(error)")
-            })
-            .disposed(by: disposeBag)
-        
-        
-        viewModel.stocks
-            .subscribe(onNext: { stocks in
-                print("stocks: \(stocks)")
             })
             .disposed(by: disposeBag)
         
