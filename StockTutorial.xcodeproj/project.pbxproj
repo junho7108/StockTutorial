@@ -13,6 +13,8 @@
 		120B68A827AEA19400F7FAC9 /* StockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B68A727AEA19400F7FAC9 /* StockRepository.swift */; };
 		120B68AA27AEA1C600F7FAC9 /* StockRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B68A927AEA1C600F7FAC9 /* StockRepositoryImpl.swift */; };
 		120B68AC27AEA28600F7FAC9 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B68AB27AEA28600F7FAC9 /* Stock.swift */; };
+		1217191427B7B43A00066851 /* StockDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217191327B7B43A00066851 /* StockDetailTopView.swift */; };
+		1217191627B7B53600066851 /* StockDetailBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1217191527B7B53600066851 /* StockDetailBottomView.swift */; };
 		1227EF2627B29F9D00366DF9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1227EF2527B29F9D00366DF9 /* LoadingView.swift */; };
 		1227EF2827B2A25700366DF9 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1227EF2727B2A25700366DF9 /* Font.swift */; };
 		1227EF2A27B2A2CC00366DF9 /* StockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1227EF2927B2A2CC00366DF9 /* StockCell.swift */; };
@@ -39,6 +41,8 @@
 		120B68A727AEA19400F7FAC9 /* StockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepository.swift; sourceTree = "<group>"; };
 		120B68A927AEA1C600F7FAC9 /* StockRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepositoryImpl.swift; sourceTree = "<group>"; };
 		120B68AB27AEA28600F7FAC9 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		1217191327B7B43A00066851 /* StockDetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailTopView.swift; sourceTree = "<group>"; };
+		1217191527B7B53600066851 /* StockDetailBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailBottomView.swift; sourceTree = "<group>"; };
 		1227EF2527B29F9D00366DF9 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		1227EF2727B2A25700366DF9 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		1227EF2927B2A2CC00366DF9 /* StockCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockCell.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				1227EF2927B2A2CC00366DF9 /* StockCell.swift */,
 				12CEE6B527B65AD100C18A6B /* EmptyView.swift */,
 				12CEE6B927B68DC700C18A6B /* StockDetailView.swift */,
+				1217191327B7B43A00066851 /* StockDetailTopView.swift */,
+				1217191527B7B53600066851 /* StockDetailBottomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,12 +332,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				120B68A427AE988000F7FAC9 /* CompositionRoot.swift in Sources */,
+				1217191627B7B53600066851 /* StockDetailBottomView.swift in Sources */,
 				1277EC4427AFFFCC0077BD95 /* StockListViewModel.swift in Sources */,
 				12C40B2227A965660005C020 /* StockListController.swift in Sources */,
 				120B68AC27AEA28600F7FAC9 /* Stock.swift in Sources */,
 				1227EF2A27B2A2CC00366DF9 /* StockCell.swift in Sources */,
 				122BBD7627A963840026671B /* AppDelegate.swift in Sources */,
 				12CEE6BA27B68DC700C18A6B /* StockDetailView.swift in Sources */,
+				1217191427B7B43A00066851 /* StockDetailTopView.swift in Sources */,
 				122BBD7827A963840026671B /* SceneDelegate.swift in Sources */,
 				120B68A827AEA19400F7FAC9 /* StockRepository.swift in Sources */,
 				120B68A627AE9A8A00F7FAC9 /* MainCoordinator.swift in Sources */,

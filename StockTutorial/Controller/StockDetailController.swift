@@ -21,6 +21,18 @@ class StockDetailController: BaseViewController, FactoryModule {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        enableScrollWhenKeyboardAppeared(scrollView: selfView.scrollView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        removeListeners()
+    }
+    
     //MARK: - Configure
     
     override func configureUI() {
