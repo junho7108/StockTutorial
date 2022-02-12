@@ -4,15 +4,11 @@ import Alamofire
 
 class StockRepositoryImpl: StockRepository {
     
-    enum StockRepositoryError: Error {
-        case encoding
-        case badURL
-    }
-    
-    let apiKey: String = "IZEI2Y7NR30L387V"
+    let apiKey: String = "3K5N5XC9OO7QGO3U"
     let decoder = JSONDecoder()
     
     //MARK: - 기존 API를 이용해서 Observable을 리턴하는 API 구현
+    
     func fetchStockPublisher(keywords: String) -> Observable<StockResult> {
         return Observable.create { observable -> Disposable in
             
@@ -35,23 +31,21 @@ class StockRepositoryImpl: StockRepository {
     
     func fetchTimeSeriesPublisher(keywords: String) -> Observable<TimeSeriesMonthlyAdjusted> {
         return Observable.create { [unowned self] observable -> Disposable in
-            
+
             let queryResult = parseQueryString(text: keywords)
             var query = ""
-            
+
             switch queryResult {
             case .success(let value):
                 query = value
-                
+
             case .failure(let error):
-                return Disposables.create {
-                    observable.onError(error)
-                }
+                observable.onError(error)
             }
-            
-            let urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=\(query)&\(self.apiKey)"
+
+            let urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_MONTHLY_ADJUSTED&symbol=\(query)&apikey=\(apiKey)"
             let urlResult = parseURL(urlString: urlString)
-            
+
             switch urlResult {
             case .success(let url):
                 AF.request(url, method: .get,
@@ -59,23 +53,23 @@ class StockRepositoryImpl: StockRepository {
                            encoding: JSONEncoding.default,
                            headers: nil, interceptor: nil, requestModifier: nil)
                     .responseDecodable(of: TimeSeriesMonthlyAdjusted.self) { response in
-                        
+
                         if let error = response.error {
                             observable.onError(error)
                         }
-                        
+
                         if let timeSeries = response.value {
                             observable.onNext(timeSeries)
                             observable.onCompleted()
+                        } else {
+                            observable.onError(MyError.badresponse)
                         }
                     }
-                
+
             case .failure(let error):
-                return Disposables.create {
-                    observable.onError(error)
-                }
+                observable.onError(error)
             }
-         
+
             return Disposables.create()
         }
     }
@@ -84,7 +78,7 @@ class StockRepositoryImpl: StockRepository {
         if let url = URL(string: urlString) {
             return .success(url)
         } else {
-            let error = StockRepositoryError.badURL
+            let error = MyError.badURL
             return .failure(error)
         }
     }
@@ -93,12 +87,14 @@ class StockRepositoryImpl: StockRepository {
         if let query = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) {
             return .success(query)
         } else {
-            let error = StockRepositoryError.encoding
+            let error = MyError.encoding
             return .failure(error)
         }
     }
 }
 
+//MARK: - StockRepositoryImpl
+ 
 extension StockRepositoryImpl {
     private func fetchStockPublisher(keywords: String, completion: @escaping ((Result<StockResult, Error>) -> Void)) {
         let queryResult = parseQueryString(text: keywords)

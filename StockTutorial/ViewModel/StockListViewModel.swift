@@ -1,12 +1,8 @@
 import RxSwift
 
-class StockListViewModel {
+class StockListViewModel: BaseViewModel {
     
     let usecase: StockUseCase
-    
-    var loading: BehaviorSubject<Bool> = .init(value: false)
-    
-    var errorMessage: BehaviorSubject<String?> = .init(value: nil)
     
     var stocks: BehaviorSubject<[Stock]> = .init(value: [])
     
@@ -16,13 +12,12 @@ class StockListViewModel {
         return isEmpty.asObservable()
     }
     
-    private let disposeBag = DisposeBag()
-    
-   
    //MARK: - Lifecycle
     
     init(usecase: StockUseCase) {
         self.usecase = usecase
+     
+        super.init()
         reduce()
     }
     
@@ -37,9 +32,9 @@ class StockListViewModel {
                 self.stocks.onNext(stockResult.items)
             } onError: { [unowned self] error in
                 self.loading.onNext(false)
-                self.stocks.onNext([])
                 self.errorMessage.onNext(error.localizedDescription)
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
     
     //MARK: - Helpers

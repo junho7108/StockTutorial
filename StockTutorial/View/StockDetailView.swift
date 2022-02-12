@@ -4,6 +4,8 @@ class StockDetailView: BaseView {
     
     let scrollView = UIScrollView()
     
+    let loadingView = LoadingView()
+    
     private let topView = StockDetailTopView()
     
     private let bottomView = StockDetailBottomView()
@@ -28,6 +30,11 @@ class StockDetailView: BaseView {
             make.top.equalTo(topView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(50)
+        }
+        
+        addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

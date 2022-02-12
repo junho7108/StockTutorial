@@ -12,8 +12,8 @@ struct TimeSeriesMonthlyAdjusted: Decodable {
     struct Meta: Decodable {
         let symbol: String
         
-        enum CordingKeys: String, CodingKey {
-            case symbole = "2. Symbol"
+        enum CodingKeys: String, CodingKey {
+            case symbol = "2. Symbol"
         }
     }
     

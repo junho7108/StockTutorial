@@ -56,18 +56,19 @@ class StockListController: BaseViewController, FactoryModule {
     //MARK: - Bind
     
     func bind() {
-        
-        // Bind UI
+    
         viewModel.loading
             .map { !$0 }
             .asDriver(onErrorJustReturn: false)
             .drive(selfView.loadingView.rx.isHidden)
             .disposed(by: disposeBag)
         
+        
         viewModel.isEmptyObservable
             .asDriver(onErrorJustReturn: true)
             .drive(selfView.emptyView.rx.isHidden)
             .disposed(by: disposeBag)
+        
         
         viewModel.stocks
             .asDriver(onErrorJustReturn: [])
@@ -76,7 +77,15 @@ class StockListController: BaseViewController, FactoryModule {
             }
         .disposed(by: disposeBag)
         
-        // Bind Data
+        
+        viewModel.errorMessage
+            .subscribe(onNext: { errorMessage in
+                guard let message = errorMessage else { return }
+                print("error: \(message.description)")
+            })
+            .disposed(by: disposeBag)
+        
+        
         selfView.searchController.searchBar.rx.text
             .debounce(.microseconds(300), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] text in
@@ -84,13 +93,7 @@ class StockListController: BaseViewController, FactoryModule {
             })
             .disposed(by: disposeBag)
     
-        viewModel.errorMessage
-            .subscribe(onNext: { error in
-                guard let error = error else { return }
-                print("error: \(error)")
-            })
-            .disposed(by: disposeBag)
-        
+
         selfView.tableView.rx.modelSelected(Stock.self)
             .subscribe(onNext: { [unowned self] stock in
                 self.coordinator?.stockCellTapped(item: stock)

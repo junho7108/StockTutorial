@@ -5,15 +5,18 @@ class StockDetailController: BaseViewController, FactoryModule {
     
     struct Dependency {
         let stock: Stock
+        let viewModel: StockDetailViewModel
     }
     
     let stock: Stock
+    let viewModel: StockDetailViewModel
     let selfView = StockDetailView()
     
     //MARK: - Lifecycle
     
     required init(dependency: Dependency, payload: ()) {
         self.stock = dependency.stock
+        self.viewModel = dependency.viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +36,13 @@ class StockDetailController: BaseViewController, FactoryModule {
         removeListeners()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        viewModel.fetchTimeSeries(symbol: stock.symbol ?? "a")
+        
+        bind()
+    }
+    
     //MARK: - Configure
     
     override func configureUI() {
@@ -43,5 +53,31 @@ class StockDetailController: BaseViewController, FactoryModule {
         selfView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    //MARK: - bind
+    
+    func bind() {
+        
+        viewModel.loading
+            .map { !$0 }
+            .asDriver(onErrorJustReturn: false)
+            .drive(selfView.loadingView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.timeSeriesAdjusted.subscribe { timeSeries in
+            print("timeSeries: \(timeSeries)")
+        } onError: { error in
+            print("error: \(error.localizedDescription)")
+        }
+        .disposed(by: disposeBag)
+
+        
+        viewModel.errorMessage.subscribe(onNext: { errorMessage in
+            guard let message = errorMessage else { return }
+            print("error: \(message.description)")
+        })
+            .disposed(by: disposeBag)
     }
 }

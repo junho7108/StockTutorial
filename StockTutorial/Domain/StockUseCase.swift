@@ -1,7 +1,7 @@
-import Foundation
 import RxSwift
 
 class StockUseCase {
+    
     private let stockRepository: StockRepository
     
     init(stockRepository: StockRepository) {
