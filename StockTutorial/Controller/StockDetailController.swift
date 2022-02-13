@@ -66,18 +66,18 @@ class StockDetailController: BaseViewController, FactoryModule {
             .disposed(by: disposeBag)
         
         
-        viewModel.timeSeriesAdjusted.subscribe { timeSeries in
-            print("timeSeries: \(timeSeries)")
-        } onError: { error in
-            print("error: \(error.localizedDescription)")
-        }
-        .disposed(by: disposeBag)
-
+        viewModel.errorMessage
+            .subscribe(onNext: { errorMessage in
+                guard let message = errorMessage else { return }
+                print("error: \(message.description)")
+            })
+            .disposed(by: disposeBag)
         
-        viewModel.errorMessage.subscribe(onNext: { errorMessage in
-            guard let message = errorMessage else { return }
-            print("error: \(message.description)")
-        })
+        
+        viewModel.monthInfoObservable
+            .bind {
+                print($0)
+            }
             .disposed(by: disposeBag)
     }
 }

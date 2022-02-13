@@ -32,6 +32,7 @@
 		122BBD9627A964C30026671B /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BBD9527A964C30026671B /* StockListView.swift */; };
 		1277EC4227AFFEC20077BD95 /* StockUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277EC4127AFFEC20077BD95 /* StockUseCase.swift */; };
 		1277EC4427AFFFCC0077BD95 /* StockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */; };
+		12A9351527B91DA000521E4B /* MonthInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A9351427B91DA000521E4B /* MonthInfo.swift */; };
 		12C40B2227A965660005C020 /* StockListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C40B2127A965660005C020 /* StockListController.swift */; };
 		12CEE6B627B65AD100C18A6B /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CEE6B527B65AD100C18A6B /* EmptyView.swift */; };
 		12CEE6B827B685AC00C18A6B /* StockDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CEE6B727B685AC00C18A6B /* StockDetailController.swift */; };
@@ -67,6 +68,7 @@
 		122BBD9527A964C30026671B /* StockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListView.swift; sourceTree = "<group>"; };
 		1277EC4127AFFEC20077BD95 /* StockUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockUseCase.swift; sourceTree = "<group>"; };
 		1277EC4327AFFFCC0077BD95 /* StockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModel.swift; sourceTree = "<group>"; };
+		12A9351427B91DA000521E4B /* MonthInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthInfo.swift; sourceTree = "<group>"; };
 		12C40B2127A965660005C020 /* StockListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListController.swift; sourceTree = "<group>"; };
 		12CEE6B527B65AD100C18A6B /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		12CEE6B727B685AC00C18A6B /* StockDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			children = (
 				120B68AB27AEA28600F7FAC9 /* Stock.swift */,
 				1217191727B7C6B600066851 /* TimeSeriesMonthlyAdjusted.swift */,
+				12A9351427B91DA000521E4B /* MonthInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				120B68A427AE988000F7FAC9 /* CompositionRoot.swift in Sources */,
 				1217191627B7B53600066851 /* StockDetailBottomView.swift in Sources */,
 				1277EC4427AFFFCC0077BD95 /* StockListViewModel.swift in Sources */,
+				12A9351527B91DA000521E4B /* MonthInfo.swift in Sources */,
 				12C40B2227A965660005C020 /* StockListController.swift in Sources */,
 				120B68AC27AEA28600F7FAC9 /* Stock.swift in Sources */,
 				1227EF2A27B2A2CC00366DF9 /* StockCell.swift in Sources */,
