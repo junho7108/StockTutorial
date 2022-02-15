@@ -73,11 +73,10 @@ class StockDetailController: BaseViewController, FactoryModule {
             })
             .disposed(by: disposeBag)
         
-        
-        viewModel.monthInfoObservable
-            .bind {
-                print($0)
-            }
+        viewModel.timeSeriesAdjusted
+            .subscribe(onNext: { timeSeries in
+                print(timeSeries?.monthInfos)
+            })
             .disposed(by: disposeBag)
     }
 }
