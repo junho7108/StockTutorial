@@ -38,7 +38,7 @@ class StockDetailController: BaseViewController, FactoryModule {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchTimeSeries(symbol: stock.symbol ?? "a")
+        viewModel.fetchTimeSeries(symbol: stock.symbol ?? "a", stock: stock)
         
         bind()
     }
@@ -76,6 +76,13 @@ class StockDetailController: BaseViewController, FactoryModule {
         viewModel.timeSeriesAdjusted
             .subscribe(onNext: { timeSeries in
                 print(timeSeries?.monthInfos)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.stockObservable
+            .asDriver(onErrorJustReturn: Stock())
+            .drive(onNext: { [unowned self] stock in
+                self.selfView.topView.configureUI(stock: stock)
             })
             .disposed(by: disposeBag)
     }

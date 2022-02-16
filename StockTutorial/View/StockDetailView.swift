@@ -6,9 +6,9 @@ class StockDetailView: BaseView {
     
     let loadingView = LoadingView()
     
-    private let topView = StockDetailTopView()
+    let topView = StockDetailTopView()
     
-    private let bottomView = StockDetailBottomView()
+    let bottomView = StockDetailBottomView()
     
     
     override func configureUI() {

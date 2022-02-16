@@ -5,6 +5,11 @@ class StockDetailViewModel: BaseViewModel {
     let usecase: StockDetailUseCase
     
     var timeSeriesAdjusted: BehaviorSubject<TimeSeriesMonthlyAdjusted?> = .init(value: nil)
+    
+    private var stock: BehaviorSubject<Stock> = .init(value: Stock())
+    var stockObservable: Observable<Stock> {
+        return stock.asObserver()
+    }
 
     
     init(usecase: StockDetailUseCase) {
@@ -12,9 +17,9 @@ class StockDetailViewModel: BaseViewModel {
         super.init()
     }
     
-    func fetchTimeSeries(symbol: String) {
+    func fetchTimeSeries(symbol: String, stock: Stock) {
         loading.onNext(true)
-        
+        self.stock.onNext(stock)
         usecase.fetchTimeSeriesPublisher(keywords: symbol)
             .subscribe { [unowned self] value in
                 var timeSeriesMonthlyAdjusted = value
