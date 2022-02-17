@@ -87,7 +87,7 @@ class StockListController: BaseViewController, FactoryModule {
         
         
         selfView.searchController.searchBar.rx.text
-            .debounce(.microseconds(300), scheduler: MainScheduler.instance)
+            .debounce(.microseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [unowned self] text in
                 self.viewModel.searchQueryChanged(query: text ?? "")
             })

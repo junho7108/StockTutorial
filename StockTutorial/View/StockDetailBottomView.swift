@@ -15,6 +15,7 @@ class StockDetailBottomView: BaseView {
         
         investmentInputView.configureUI(placeholder: "Enter your initial investment amout",
                                         description: "initial investment amout")
+     
         
         costInputView.configureUI(placeholder: "Monthly dollar cost averaging amout",
                                         description: "Monthly dollar cost averaging amout")
@@ -26,22 +27,29 @@ class StockDetailBottomView: BaseView {
             make.top.equalToSuperview().inset(8)
             make.leading.trailing.equalToSuperview().inset(16)
         }
+        investmentInputView.textField.keyboardType = .numberPad
+        investmentInputView.textField.addDoneButton()
         
         costInputView.snp.makeConstraints { make in
             make.top.equalTo(investmentInputView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
         }
+        costInputView.textField.keyboardType = .numberPad
+        costInputView.textField.addDoneButton()
         
         dateInputView.snp.makeConstraints { make in
             make.top.equalTo(costInputView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
         }
-        
         slider.snp.makeConstraints { make in
             make.top.equalTo(dateInputView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(16)
         }
+    }
+    
+    func configureUI(currentcy: String) {
+        investmentInputView.valueLabel.text = currentcy
     }
     
     class InputView: BaseView {

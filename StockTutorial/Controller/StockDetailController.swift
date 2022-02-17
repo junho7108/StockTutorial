@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 import Pure
 
 class StockDetailController: BaseViewController, FactoryModule {
@@ -83,6 +85,23 @@ class StockDetailController: BaseViewController, FactoryModule {
             .asDriver(onErrorJustReturn: Stock())
             .drive(onNext: { [unowned self] stock in
                 self.selfView.topView.configureUI(stock: stock)
+                
+                if let currency = stock.currency {
+                    self.selfView.bottomView.configureUI(currentcy: currency)
+                }
+             
+            })
+            .disposed(by: disposeBag)
+        
+//        selfView.bottomView.dateInputView.textField.rx.shouldReturn
+//            .bind {
+//                print(#function)
+//            }
+//            .disposed(by: disposeBag)
+        
+        selfView.bottomView.dateInputView.rx.sentMessage(#selector(UITextFieldDelegate.textFieldShouldReturn(_:)))
+            .subscribe(onNext: { value in
+                print(value)
             })
             .disposed(by: disposeBag)
     }
