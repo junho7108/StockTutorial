@@ -41,6 +41,7 @@ class StockDetailBottomView: BaseView {
             make.top.equalTo(costInputView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)
         }
+        
         slider.snp.makeConstraints { make in
             make.top.equalTo(dateInputView.snp.bottom).offset(8)
             make.leading.trailing.equalToSuperview().inset(16)

@@ -93,11 +93,12 @@ class StockDetailController: BaseViewController, FactoryModule {
             })
             .disposed(by: disposeBag)
         
-//        selfView.bottomView.dateInputView.textField.rx.shouldReturn
-//            .bind {
-//                print(#function)
-//            }
-//            .disposed(by: disposeBag)
+        selfView.bottomView.dateInputView.textField.rx.controlEvent(.editingDidBegin)
+            .bind { _ in
+                self.selfView.bottomView.dateInputView.textField.resignFirstResponder()
+            }
+            .disposed(by: disposeBag)
+        
         
         selfView.bottomView.dateInputView.rx.sentMessage(#selector(UITextFieldDelegate.textFieldShouldReturn(_:)))
             .subscribe(onNext: { value in
